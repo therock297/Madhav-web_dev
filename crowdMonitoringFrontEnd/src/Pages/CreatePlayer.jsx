@@ -56,79 +56,81 @@ const CreatePlayer = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-blue-900 to-orange-500 rounded-lg shadow-lg font-apple">
+    <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-purple-900 to-red-500 rounded-lg shadow-lg font-apple">
       <BackButton />
-      <h1 className="text-3xl text-center font-bold text-black mb-8 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Create New Player</h1>
+      <h1 className="text-3xl text-center font-bold text-black mb-8 hover:text-xl hover:font-semibold transition duration-300">Create New Player</h1>
       {loading && <Spinner />}
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">First Name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Last Name</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Age</label>
-          <input
-            type="text"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Team</label>
-          <input
-            type="text"
-            value={team}
-            onChange={(e) => setTeam(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Position</label>
-          <input
-            type="text"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Date of Birth</label>
-          <input
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            className="input"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-lg text-black font-bold mb-1 hover:text-white hover:font-semibold hover:text-lg hover:scale-105 transition duration-300">Sport</label>
-          <input
-            type="text"
-            value={sport}
-            onChange={(e) => setSport(e.target.value)}
-            className="input"
-          />
-        </div>
-      </form>
+      <div className="max-w-md mx-auto">
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">First Name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Last Name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Age</label>
+            <input
+              type="text"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Team</label>
+            <input
+              type="text"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Position</label>
+            <input
+              type="text"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Date of Birth</label>
+            <input
+              type="date"
+              value={dateOfBirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Sport</label>
+            <input
+              type="text"
+              value={sport}
+              onChange={(e) => setSport(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 transition duration-2000 px-3 py-2 text-sm" // Increased transition duration for a more gradual color change
+            />
+          </div>
+        </form>
+      </div>
       {error && <p className="text-red-500 text-center">{error}</p>}
       <div className="flex justify-center mt-6">
         <button
-          className="py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-900 hover:bg-red-500 transition duration-300"
+          className="py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-900 hover:bg-red-500 hover:text-xl hover:font-semibold transition duration-300"
           onClick={handleSavePlayer}
         >
           Save

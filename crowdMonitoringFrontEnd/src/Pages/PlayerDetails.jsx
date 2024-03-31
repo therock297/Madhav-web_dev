@@ -24,7 +24,7 @@ const PlayerDetails = () => {
     }, []);
 
     return (
-        <div className='p-4'>
+        <div className='p-4 bg-gradient-to-r from-purple-900 to-red-500'>
             <BackButton /> 
             <h1 className='text-3xl my-4'>Player Details</h1>
             {loading ? (
