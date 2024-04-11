@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import { RiPlayFill } from 'react-icons/ri'; // Import an icon for navigating to player movements
+import { RiPlayFill } from 'react-icons/ri';
 
 const ListPlayers = () => {
   const [players, setPlayers] = useState([]);
@@ -27,10 +27,10 @@ const ListPlayers = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-purple-900 to-red-500 min-h-screen">
-      <div className='p-4'>
+    <div className="bg-gradient-to-r from-purple-900 to-red-500 min-h-screen flex justify-center items-center">
+      <div className='p-4 w-full max-w-screen-lg'>
         <div className='flex justify-center items-center mb-8'>
-          <h1 className='text-3xl font-semibold text-black hover:text-gray-500 cursor-pointer font-san-francisco'>
+          <h1 className='text-3xl font-semibold text-black hover:text-red-100 cursor-pointer font-san-francisco'>
             Player List
           </h1>
           <Link to='/player/create' className='ml-4'>
@@ -102,13 +102,13 @@ const ListPlayers = () => {
                           <MdOutlineDelete className='text-2xl' />
                         </Link>
                         <Link
-                          to={`/player/movements/${player._id}`} // Link to player movements
+                          to={`/player/movements/${player._id}`}
                           className='text-green-600 hover:text-green-800 transition duration-300'
                         >
                           <RiPlayFill className='text-2xl' />
                         </Link>
                         <Link
-                          to={`/player/update/stats/${player._id}`} // Link to player statistics update
+                          to={`/player/update/stats/${player._id}`}
                           className='text-orange-600 hover:text-orange-800 transition duration-300'
                         >
                           <MdOutlineAddBox className='text-2xl' />
