@@ -61,7 +61,7 @@ const UpdatePlayerStats = () => {
   return (
     <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-purple-900 to-orange-500 rounded-lg shadow-lg font-apple">
       <BackButton />
-      <h1 className="text-3xl font-bold text-center text-black hover:text-white mb-8 transition duration-300">Edit Player Stats</h1>
+      <h1 className="text-3xl font-bold text-center text-black hover:text-white mb-8 transition duration-300">Update Player Stats</h1>
       {loading ? <Spinner /> : null}
       <div className="max-w-md mx-auto bg-red-200 rounded-lg shadow-md p-6">
         <div className="grid grid-cols-1 gap-4">

@@ -18,7 +18,7 @@ const DeletePlayer = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Player Deleted successfully', { variant: 'success' });
-        navigate('/players'); 
+        navigate('/players');
       })
       .catch((error) => {
         setLoading(false);
@@ -26,21 +26,25 @@ const DeletePlayer = () => {
         console.log(error);
       });
   };
-  
-  return (
-    <div className='p-4'>
-      <BackButton to={`/players`} />
-      <h1 className='text-3xl my-4'>Delete Player</h1>
-      {loading ? <Spinner /> : ''}
-      <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'>
-        <h3 className='text-2xl'>Are you sure you want to delete this player?</h3>
 
-        <button
-          className='p-4 bg-red-600 text-white m-8 w-full'
-          onClick={handleDeletePlayer}
-        >
-          Yes, Delete it (:0)
-        </button>
+  return (
+    <div className="bg-gradient-to-r from-purple-900 to-orange-500 min-h-screen flex flex-col justify-center items-center">
+      <div className="max-w-lg w-full p-8 bg-red-300 rounded-lg shadow-lg">
+        <BackButton to={`/players`} className="mb-4" />
+        <h1 className="text-3xl font-bold text-center text-black mb-4 hover:text-red-500 transition-colors duration-300">
+          Delete Player
+        </h1>
+        {loading ? <Spinner /> : ''}
+        <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl p-8">
+          <h3 className="text-2xl mb-4">Are you sure you want to delete this player?</h3>
+
+          <button
+            className="py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300"
+            onClick={handleDeletePlayer}
+          >
+            Yes, Delete it (:0)
+          </button>
+        </div>
       </div>
     </div>
   );

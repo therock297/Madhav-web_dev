@@ -18,26 +18,26 @@ const UpdatePlayer = () => {
   const {id} = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
-
   useEffect(() => {
     setLoading(true);
     axios.get(`http://localhost:5004/players/${id}`)
-    .then((res) => {
-      setFirstName(res.data.firstName);
-      setLastName(res.data.lastName);
-      setAge(res.data.age);
-      setTeam(res.data.team);
-      setPosition(res.data.position);
-      setDOB(res.data.dateOfBirth);
-      setSport(res.data.sport);
+      .then((res) => {
+        const { firstName, lastName, age, team, position, dateOfBirth, sport } = res.data;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAge(age);
+        setTeam(team);
+        setPosition(position);
+        setDOB(dateOfBirth);
+        setSport(sport);
         setLoading(false);
       }).catch((e) => {
         setLoading(false);
-        alert('An e happened. Please Chack console');
+        enqueueSnackbar('An error occurred. Please check console.', { variant: 'error' });
         console.log(e);
       });
-  }, [])
-  
+  }, []);
+
   const handleUpdatePlayer = () => {
     const data = {
       firstName,
@@ -49,92 +49,97 @@ const UpdatePlayer = () => {
       sport,
     };
     setLoading(true);
-    axios
-      .put(`http://localhost:5004/players/${id}`, data)
+    axios.put(`http://localhost:5004/players/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Player Data Edited successfully', { variant: 'success' });
         navigate('/players');
-      })
-      .catch((e) => {
+      }).catch((e) => {
         setLoading(false);
-        enqueueSnackbar('Error', { variant: 'e' });
+        enqueueSnackbar('Error', { variant: 'error' });
         console.log(e);
       });
   };
 
   return (
-    <div className='p-4'>
-      <BackButton />
-      <h1 className='text-3xl my-4'>Edit Player</h1>
-      {loading ? <Spinner /> : ''}
-      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-      <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>First Name</label>
-          <input
-            type='text'
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
+    <div className="bg-gradient-to-r from-purple-900 to-orange-500 min-h-screen flex flex-col justify-center items-center">
+      <BackButton to={`/players`} className="ml-4 mt-4" />
+      <h1 className="text-3xl font-bold text-center text-white mb-6 hover:text-red-500 transition-colors duration-300">
+        Update Player Details
+      </h1>
+      <div className="max-w-lg w-full p-8 bg-red-300 rounded-lg shadow-lg">
+        {loading ? <Spinner /> : ''}
+        <div className="flex flex-col gap-4 p-4">
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">First Name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">Last Name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">Age</label>
+            <input
+              type="number"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">Team</label>
+            <input
+              type="text"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">Position</label>
+            <input
+              type="text"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">DOB</label>
+            <input
+              type="date"
+              value={DOB}
+              onChange={(e) => setDOB(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-xl text-black font-bold">Sport</label>
+            <input
+              type="text"
+              value={sport}
+              onChange={(e) => setSport(e.target.value)}
+              className="border-2 border-gray-500 rounded-md px-4 py-2"
+            />
+          </div>
+          <button
+            className="py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 self-center"
+            onClick={handleUpdatePlayer}
+          >
+            Save
+          </button>
         </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Last Name</label>
-          <input
-            type='text'
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Age</label>
-          <input
-            type='number'
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Team</label>
-          <input
-            type='text'
-            value={team}
-            onChange={(e) => setTeam(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Position</label>
-          <input
-            type='text'
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>DOB</label>
-          <input
-            type='date'
-            value={DOB}
-            onChange={(e) => setDOB(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>sport</label>
-          <input
-            type='text'
-            value={sport}
-            onChange={(e) => setSport(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <button className='p-2 bg-sky-300 m-8' onClick={handleUpdatePlayer}>
-          Save
-        </button>
       </div>
     </div>
   );
