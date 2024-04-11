@@ -56,11 +56,11 @@ const CreatePlayer = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-purple-900 to-red-500 rounded-lg shadow-lg font-apple">
+    <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-purple-900 to-orange-500 rounded-lg shadow-lg font-apple">
       <BackButton />
-      <h1 className="text-3xl text-center font-bold text-black mb-8 hover:text-xl hover:font-semibold transition duration-300">Create New Player</h1>
+      <h1 className="text-3xl text-center font-bold text-black mb-8 transition duration-300 hover:text-white">Create New Player</h1>
       {loading && <Spinner />}
-      <div className="max-w-md mx-auto">
+      <div className="max-w-md mx-auto bg-red-200 rounded-lg shadow-md p-6">
         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col">
             <label className="text-lg text-black font-bold mb-1">First Name</label>
@@ -130,7 +130,7 @@ const CreatePlayer = () => {
       {error && <p className="text-red-500 text-center">{error}</p>}
       <div className="flex justify-center mt-6">
         <button
-          className="py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-900 hover:bg-red-500 hover:text-xl hover:font-semibold transition duration-300"
+          className="py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-900 transition duration-300"
           onClick={handleSavePlayer}
         >
           Save

@@ -27,7 +27,7 @@ const ListPlayers = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-purple-900 to-red-500 min-h-screen flex justify-center items-center">
+    <div className="bg-gradient-to-r from-purple-900 to-orange-500 min-h-screen flex justify-center items-center">
       <div className='p-4 w-full max-w-screen-lg'>
         <div className='flex justify-center items-center mb-8'>
           <h1 className='text-3xl font-semibold text-black hover:text-red-100 cursor-pointer font-san-francisco'>

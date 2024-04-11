@@ -7,33 +7,34 @@ import { useSnackbar } from 'notistack';
 
 const UpdatePlayerStats = () => {
   const [gamesPlayed, setGamesPlayed] = useState('');
-  const [goalsScored, setGoals] = useState('');
+  const [goalsScored, setGoalsScored] = useState('');
   const [assists, setAssists] = useState('');
   const [yellowCards, setYellowCards] = useState('');
   const [redCards, setRedCards] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
-
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5004/players/${id}/statistics`)
-    .then((res) => {
-      setGamesPlayed(res.data.gamesPlayed);
-      setGoals(res.data.goalsScored);
-      setAssists(res.data.assists);
-      setYellowCards(res.data.yellowCards);
-      setRedCards(res.data.redCards);
+    axios
+      .get(`http://localhost:5004/players/${id}/statistics`)
+      .then((res) => {
+        setGamesPlayed(res.data.gamesPlayed);
+        setGoalsScored(res.data.goalsScored);
+        setAssists(res.data.assists);
+        setYellowCards(res.data.yellowCards);
+        setRedCards(res.data.redCards);
         setLoading(false);
-      }).catch((e) => {
+      })
+      .catch((e) => {
         setLoading(false);
-        alert('An e happened. Please Chack console');
+        enqueueSnackbar('An error occurred. Please check console.', { variant: 'error' });
         console.log(e);
       });
-  }, [])
-  
+  }, []);
+
   const handleUpdatePlayerStats = () => {
     const data = {
       gamesPlayed,
@@ -47,88 +48,80 @@ const UpdatePlayerStats = () => {
       .put(`http://localhost:5004/players/${id}/statistics`, data)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('Player Data Edited successfully', { variant: 'success' });
+        enqueueSnackbar('Player data edited successfully', { variant: 'success' });
         navigate('/players');
       })
       .catch((e) => {
         setLoading(false);
-        enqueueSnackbar('Error', { variant: 'e' });
+        enqueueSnackbar('Error', { variant: 'error' });
         console.log(e);
       });
   };
 
   return (
-    <div className='p-4'>
+    <div className="container mx-auto mt-10 p-6 bg-gradient-to-r from-purple-900 to-orange-500 rounded-lg shadow-lg font-apple">
       <BackButton />
-      <h1 className='text-3xl my-4'>Edit Player Stats</h1>
+      <h1 className="text-3xl font-bold text-center text-black hover:text-white mb-8 transition duration-300">Edit Player Stats</h1>
       {loading ? <Spinner /> : null}
-      <div className='flex flex-col border-2 border-sky-400 rounded-xl max-w-md mx-auto p-4'>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Games Played</label>
-          <input
-            type='number'
-            value={gamesPlayed}
-            onChange={(e) => setGamesPlayed(e.target.value)}
-            className='input-field border border-gray-950'
-          />
+      <div className="max-w-md mx-auto bg-red-200 rounded-lg shadow-md p-6">
+        <div className="grid grid-cols-1 gap-4">
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Games Played</label>
+            <input
+              type="number"
+              value={gamesPlayed}
+              onChange={(e) => setGamesPlayed(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 px-3 py-2 text-sm"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Goals Scored</label>
+            <input
+              type="number"
+              value={goalsScored}
+              onChange={(e) => setGoalsScored(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 px-3 py-2 text-sm"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Assists</label>
+            <input
+              type="number"
+              value={assists}
+              onChange={(e) => setAssists(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 px-3 py-2 text-sm"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Yellow Card(s)</label>
+            <input
+              type="number"
+              value={yellowCards}
+              onChange={(e) => setYellowCards(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 px-3 py-2 text-sm"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg text-black font-bold mb-1">Red Card(s)</label>
+            <input
+              type="number"
+              value={redCards}
+              onChange={(e) => setRedCards(e.target.value)}
+              className="input rounded-md border border-blue-500 hover:border-blue-900 px-3 py-2 text-sm"
+            />
+          </div>
         </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Goals Scored</label>
-          <input
-            type='number'
-            value={goalsScored}
-            onChange={(e) => setGoalsScored(e.target.value)}
-            className='input-field border border-gray-950'
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Assists</label>
-          <input
-            type='number'
-            value={assists}
-            onChange={(e) => setAssists(e.target.value)}
-            className='input-field border border-gray-950'
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Yellow Card(s)</label>
-          <input
-            type='number'
-            value={yellowCards}
-            onChange={(e) => setYellowCards(e.target.value)}
-            className='input-field border border-gray-950'
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Red Card(s)</label>
-          <input
-            type='text'
-            value={redCards}
-            onChange={(e) => setRedCards(e.target.value)}
-            className='input-field  border border-gray-950'
-          />
-        </div>
+      </div>
+      <div className="flex justify-center mt-6">
         <button
-  className='button'
-  onClick={handleUpdatePlayerStats}
-  style={{
-    backgroundColor: '#4CAF50', // Background color
-    color: 'white',             // Text color
-    padding: '10px 20px',       // Padding
-    border: 'none',            // Remove the default border
-    borderRadius: '4px',        // Rounded corners
-    cursor: 'pointer',          // Cursor on hover
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Add a subtle shadow
-    transition: 'background-color 0.3s ease', // Smooth color transition
-  }}
->
-  Save
-</button>
-
+          className="py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-900 hover:bg-red-500 hover:text-xl hover:font-semibold transition duration-300"
+          onClick={handleUpdatePlayerStats}
+        >
+          Save
+        </button>
       </div>
     </div>
   );
 };
-
 
 export default UpdatePlayerStats;
