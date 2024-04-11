@@ -64,7 +64,7 @@ const UpdatePlayer = () => {
   return (
     <div className="bg-gradient-to-r from-purple-900 to-orange-500 min-h-screen flex flex-col justify-center items-center">
       <BackButton to={`/players`} className="ml-4 mt-4" />
-      <h1 className="text-3xl font-bold text-center text-white mb-6 hover:text-red-500 transition-colors duration-300">
+      <h1 className="text-3xl font-bold text-center mb-6 hover:text-red-500 transition-colors duration-300">
         Update Player Details
       </h1>
       <div className="max-w-lg w-full p-8 bg-red-300 rounded-lg shadow-lg">

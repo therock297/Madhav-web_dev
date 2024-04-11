@@ -24,39 +24,41 @@ const PlayerDetails = () => {
     }, []);
 
     return (
-        <div className='p-4 bg-gradient-to-r from-purple-900 to-red-500'>
-            <BackButton /> 
-            <h1 className='text-3xl my-4'>Player Details</h1>
-            {loading ? (
-                <Spinner />
-            ) : (
-                <div className='flex flex-col border border-sky-400 rounded-lg p-4'>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> ID </span>
-                        <span>{player._id}</span>
+        <div className='p-4 bg-gradient-to-r from-purple-900 to-orange-500 min-h-screen flex justify-center items-center'>
+            <div className='max-w-lg w-full'>
+                <BackButton to="/players" className="ml-4" />
+                <h1 className='text-3xl font-bold text-center text-black my-4 hover:text-white hover:underline'>Player Details</h1>
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <div className='flex flex-col border border-sky-400 rounded-lg p-4 bg-red-200 shadow-md'>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>ID:</span>
+                            <span className="hover:underline">{player._id}</span>
+                        </div>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>First Name:</span>
+                            <span className="hover:underline">{player.firstName}</span>
+                        </div>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>Last Name:</span>
+                            <span className="hover:underline">{player.lastName}</span>
+                        </div>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>Age:</span>
+                            <span className="hover:underline">{player.age}</span>
+                        </div>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>Team:</span>
+                            <span className="hover:underline">{player.team}</span>
+                        </div>
+                        <div className='my-4'>
+                            <span className='text-xl mr-4 text-black font-bold hover:underline'>Position:</span>
+                            <span className="hover:underline">{player.position}</span>
+                        </div>
                     </div>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> First Name </span>
-                        <span>{player.firstName}</span>
-                    </div>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> Last Name </span>
-                        <span>{player.lastName}</span>
-                    </div>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> Age </span>
-                        <span>{player.age}</span>
-                    </div>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> Team </span>
-                        <span>{player.team}</span>
-                    </div>
-                    <div className='m-4'>
-                        <span className='text-xl mr-4 text-gray-500'> Position </span>
-                        <span>{player.position}</span>
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };
